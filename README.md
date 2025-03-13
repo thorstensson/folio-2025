@@ -2,7 +2,7 @@
 
 # Portfolio, first push
 
-Repo for my upcoming portfolio. This is early work in progress; expect a 'full' folio early April. For the early April release, expect to see sections: Home, Work, Photography, and Contact. Later on in April, there will also come a blog session, where I will write about just about anything: code, life, art.
+Repo for my upcoming portfolio. This is early work in progress; a 'full' folio arrives early April. For the early April release, expect to see sections: Home, Work, Photography, and Contact. Later on in April, there will also come a blog session, where I will write about just about anything: code, life, art.
 
 Toolbox: VSCode, GraphQL, Hygraph, Nuxt, Pixi 8, Lenis, GSAP.
 
@@ -79,17 +79,6 @@ yarn preview
 # bun
 bun run preview
 ```
-
-## Fixed
-
-- [X] Changed the text scroller into a GSAP text scroller, see this [GSAP community post](https://gsap.com/community/forums/topic/42921-horizontal-infinite-text-loop-without-empty-spaces/)
-
-- [X] Updated CSS for most wrappers.
-
-- [X] Made the ThreeJS scene full screen and fixed responsive resize issue.
-
-- [X] Added apple style toggle switch for audio, using v-model, credits to the original CSS solution here https://dev.to/urielbitton/how-to-design-an-ios-style-switch-4maj - which I've now adpoted into Vue.
-.
 
 ## License
 
