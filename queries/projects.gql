@@ -1,0 +1,10 @@
+query Projects {
+  projects(first: 6, orderBy: date_DESC) {
+    id
+    name
+    description
+    slug
+    tags
+    sourceCode
+  }
+}

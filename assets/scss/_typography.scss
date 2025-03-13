@@ -1,0 +1,32 @@
+// Rollup effect on hover states. Maybe create a UI partial...
+.hover {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+
+    span {
+        margin: 0;
+        padding: 0;
+        float: right;
+    }
+
+    .hover--fx {
+        white-space: nowrap;
+        transition: transform 0.4s cubic-bezier(0.4, 0.8, 0.74, 1);
+    }
+
+    .hover--fx:last-child {
+        position: absolute;
+        transform: translateY(100%);
+    }
+
+    &:hover .hover--fx:first-child {
+        transform: translateY(-100%);
+    }
+
+    &:hover .hover--fx:last-child {
+        transform: translate(0);
+        clear: both;
+        float: right;
+    }
+}

@@ -1,0 +1,55 @@
+@use "sass:math";
+@use "sass:map";
+
+@function isColorDark($color) {
+    /*Parse RGB by isolating each color*/
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    /*Compute the perceptive luminance*/
+    $l: 1 - (0.299 * $red + 0.587 * $green + 0.114 * $blue) / 255;
+    @if ($l < 0.41) {
+        @return 600;
+    } @else {
+        @return 300;
+    }
+}
+
+/**
+ * Returns a CSS clamp function which resolves to $size-at-min-width when page width is
+ * below $min-width, $size-at-max-width when page width is above $max-width.
+  Note that f-breakpoints is same as in mixins partial but importing from mixins would lead to duplicate forwarding in global
+ */
+
+ $f-break: (
+    "lg": 992px,
+    "xl": 1200px,
+    "xxl": 1920px
+) !default;
+
+$default-min-bp: map.get($f-break, "lg");
+$default-max-bp: map.get($f-break, "xxl");
+
+@function to-rems($px) {
+    $rems: math.div($px, 16px) * 1rem;
+    @return $rems;
+}
+
+@function rnd($number, $places: 0) {
+    $n: 1;
+    @if $places > 0 {
+        @for $i from 1 through $places {
+            $n: $n * 10;
+        }
+    }
+    @return math.div(math.round($number * $n), $n);
+}
+
+@function clamped($min-px, $max-px, $min-bp: $default-min-bp, $max-bp: $default-max-bp) {
+    $slope: math.div($max-px - $min-px, $max-bp - $min-bp);
+    $slope-vw: rnd($slope * 100, 2);
+    $intercept-rems: rnd(to-rems($min-px - $slope * $min-bp), 2);
+    $min-rems: rnd(to-rems($min-px), 2);
+    $max-rems: rnd(to-rems($max-px), 2);
+    @return clamp(#{$min-rems}, #{$slope-vw}vw + #{$intercept-rems}, #{$max-rems});
+}

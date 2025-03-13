@@ -1,0 +1,7 @@
+query author {
+  author(where: {slug: "thomas-thorstensson"}) {
+    name
+    bio
+    intro
+  }
+}

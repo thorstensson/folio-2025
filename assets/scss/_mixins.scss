@@ -1,0 +1,29 @@
+@use "variables";
+@use "sass:map";
+
+@mixin blend-mode-difference {
+    mix-blend-mode: difference;
+    background-clip: text;
+    background-color: variables.$primary;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+$breakpoints: (
+    "lg": 992px,
+    "xl": 1200px,
+    "xxl": 1400px
+) !default;
+
+// Mixin to manage responsive breakpoints
+@mixin this-and-above($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        // Prints a media query based on the value
+        @media (min-width: map.get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+          + "Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+}
