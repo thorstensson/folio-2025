@@ -4,10 +4,6 @@
 <template>
   <div class="header-wrapper">
     <div class="header">
-      <div class="hover">
-        <span class="hover--fx cursor"><a>hello@thomasjt.com</a></span>
-        <span aria-hidden="true" class="hover--fx"><a>hello@thomasjt.com</a></span>
-      </div>
     </div>
   </div>
 </template>

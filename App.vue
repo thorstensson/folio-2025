@@ -1,10 +1,15 @@
 <script setup lang="ts">
-
+import Lenis from 'lenis'
 const isMounted = ref<boolean>(false);
 
 onMounted(() => {
     isMounted.value = true
+    // Initialize Lenis
+    const lenis = new Lenis({
+        autoRaf: true,
+    });
 
+    lenis?.scrollTo(0, { immediate: true });
 })
 </script>
 
@@ -17,7 +22,6 @@ onMounted(() => {
 </template>
 
 <style>
-
 html,
 body {
     background-color: #E7F6F2;
@@ -30,9 +34,8 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    margin:0;
-    padding:0;
-}
 
+    margin: 0;
+    padding: 0;
+}
 </style>

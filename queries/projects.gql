@@ -1,4 +1,4 @@
-query Projects {
+query projects {
   projects(first: 6, orderBy: date_DESC) {
     id
     name
@@ -6,5 +6,13 @@ query Projects {
     slug
     tags
     sourceCode
+    image {
+      id
+      handle
+    }
+  }
+  projectsIntro(where: { slug: "selected-projects" }) {
+    title
+    intro
   }
 }

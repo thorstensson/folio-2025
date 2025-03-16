@@ -34,7 +34,15 @@ export default defineNuxtConfig({
       scalars: {}
     }
   },
-
+  
+    // Hygraph base URL for assets
+    image: {
+      hygraph: {
+        baseURL: 'https://eu-west-2.graphassets.com/cm4tev3k1008n01uo6egngvzu',
+        format: ['webp']
+    }
+  },
+  
   runtimeConfig: {
     public: {
       GQL_HOST: 'https://eu-west-2.cdn.hygraph.com/content/cm4tetqve01n107umfec1iqbg/master'
@@ -45,13 +53,6 @@ export default defineNuxtConfig({
   generate: {
     concurrency: 250,
     interval: 200,
-  },
-
-  // Hygraph base URL for assets
-  image: {
-    hygraph: {
-      baseURL: 'https://eu-west-2.graphassets.com/cm4tev3k1008n01uo6egngvzu'
-    }
   },
 
   site: {

@@ -1,48 +1,131 @@
 <script setup lang="ts">
+import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { DataArrayTexture } from 'three';
+
+const { data } = await useAsyncGql({
+    operation: 'projects'
+});
 
 const { $gsap } = useNuxtApp()
 
 onMounted(async () => {
-$gsap.registerPlugin(ScrollTrigger)
+    $gsap.registerPlugin(ScrollTrigger)
 
-let pt = $gsap.timeline({
-        // yes, we can add it to an entire timeline!
+    let pt = $gsap.timeline({
         scrollTrigger: {
-            trigger: '.projects',
-            pin: ".pin-prj", // pin the trigger element while active
-            pinSpacing: true,
+            trigger: '.pin-intro',
+            pin: ".pin-intro", // pin the trigger element while active
+            pinSpacing: false,
             start: 'top top', // when the top of the trigger hits the top of the viewport
-            end: '+=3500', // end after scrolling 500px beyond the start
-            scrub: .5, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+            endTrigger: ".projects",
+            end: 'bottom bottom', 
+            scrub: 1,
+            //markers: { startColor: "black", endColor: "orange", fontSize: "18px", fontWeight: "bold", indent: 20 }
         }
     })
+
+    // Reveal and unreveal text thanks youtube
+    let sections = $gsap.utils.toArray('.split');
+
+    sections.forEach((sec) => {
+        const splitTxt = new SplitType(sec, { types: 'words' })
+        $gsap.from(splitTxt.words, {
+            autoAlpha: 0,
+            y: +20,
+            scrollTrigger: {
+                trigger: sec,
+                start: 'top 80%',
+                scrub: false,
+                end: 'top 20%',
+                toggleActions: "play none none reverse",
+            },
+            transformOrigin: 'top',
+            stagger: .1,
+            duration: .2
+        })
+    })
+
 })
 </script>
 
 <template>
-    <div class="pin-prj">
-        <section class="projects">
-            <div class="projects__header">Selected Projects.</div>
+    <div class="pin-intro">
+        <section class="prj-intro">
+            <div class="prj-intro__header split">Selected Projects.</div>
         </section>
     </div>
+
+    <div class="projects">
+        <div v-for="proj in data.projects" :key="proj.id">
+            <div class="projects__proj">
+                <NuxtImg :src="proj.image[0].handle" provider="hygraph" alt="Project image" format="webp"
+                    sizes="sm:100vw md:50vw lg:40svw" densities="x1 x2"></NuxtImg>
+            </div>
+            <div class="projects__name split">{{ proj.name }}</div>
+            <div class="projects__tags split">{{ proj.tags }}</div>
+        </div>
+    </div>
+
 </template>
 
 <style lang="scss" scoped>
+.split {
+    -webkit-font-kerning: none;
+    font-kerning: none;
+}
 
-.projects {
-    height: 1000px;
+.pin-intro {
+    background-color: $primary;
+    z-index: 100
+}
+
+.prj-intro {
     display: flex;
     flex-flow: column;
-    font-family: $sans-text;
     gap: 20px;
     bottom: 20px;
+    font-family: $sans-text;
     color: $secondary;
+    background-color: #E7F6F2;
+    margin: 0 0 50px 0;
 
     &__header {
         font-size: clamped(46px, 100px, 380px, 1920px);
         font-weight: 700;
         line-height: .9;
+    }
+}
+
+.projects {
+    width: 100%;
+    background-color: #E7F6F2;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    align-self: flex-start;
+    margin-bottom:20%;
+
+    &__name {
+        font-family: $sans-text;
+        color: $secondary;
+        font-weight: 700;
+        font-size: clamped(15px, 30px, 380px, 1920px);
+    }
+
+    &__tags {
+        font-family: $sans-text;
+        color: $secondary;
+    }
+
+    @include this-and-above('md') {
+        :nth-child(odd) {
+            align-self: flex-end;
+        }
+
+        :nth-child(even) {
+            align-self: flex-start;
+        }
     }
 }
 </style>

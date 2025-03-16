@@ -5,34 +5,32 @@ definePageMeta({
 
 const isNext = ref<boolean>(false)
 
-onMounted(() => { 
-    
-
-    nextTick(()=> {
+onMounted(() => {
+    nextTick(() => {
         isNext.value = true;
-        console.log("isNext")
     })
-    
-    })
+})
 </script>
 
 <template>
-    <div class="home-wrapper" :class="{show: isNext}">
+    <div class="home-wrapper" :class="{ show: isNext }">
         <ViewHero />
-        <ViewSelProjects  />
+        <ViewSelProjects />
     </div>
 </template>
 
 <style lang="scss" scoped>
 .pin {
-    height: 100vh
+    height: 100vh;
 }
+
 // might be the gsap but we really need wait for both components to rener on next tick
 .show {
-    visibility:visible !important;
+    visibility: visible !important;
 }
+
 .home-wrapper {
-    visibility:hidden;
+    visibility: hidden;
     overflow-y: hidden;
     flex-flow: column;
     display: flex;
