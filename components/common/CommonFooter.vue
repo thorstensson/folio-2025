@@ -21,6 +21,6 @@
   color: $secondary;
   font-size: 15px;
   background-color: $secondary;
-  height: 50vw;
+  height: 600px
 }
 </style>

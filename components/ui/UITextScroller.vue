@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { useParentElement } from '@vueuse/core'
 
-defineProps<{
-    text?: string
+const props = defineProps<{
+    text?: string,
     speed?: string
 }>()
 
 const { $gsap } = useNuxtApp()
 const parentEl = useParentElement()
-
 
 //TODO: Ok so TYpeScript / ESLint is finding some 'any' types, fix when have time
 onNuxtReady(() => {
@@ -62,7 +61,7 @@ onNuxtReady(() => {
             widths = [],
             xPercents = [],
             curIndex = 0,
-            pixelsPerSecond = (config.speed || 1) * 100,
+            pixelsPerSecond = (props.speed || 1) * 100,
             snap = config.snap === false ? v => v : $gsap.utils.snap(config.snap || 1), // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
             totalWidth, curX, distanceToStart, distanceToLoop, item, i;
         $gsap.set(items, { // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
@@ -125,14 +124,12 @@ onNuxtReady(() => {
 
 <style lang="scss" scoped>
 .wrapper {
-    position: absolute;
-    display: flex;
     overflow: hidden;
     width: 100%;
+    height: -moz-fit-content;
     height: fit-content;
     align-items: center;
-    bottom: 70px;
-    padding-bottom: 20px;
+    padding: 200px 0 200px 1px;
 }
 
 .rail {
@@ -142,21 +139,20 @@ onNuxtReady(() => {
         white-space: pre;
         line-height: 1em;
         margin: 0 2rem 0 0;
-
         font-family: $sans-text;
         color: $secondary;
         font-family: $sans-text;
-        font-weight: 500;
-        //font-size: clamp-calc(480px, 1920px, 70px, 140px);
-
+        font-weight: 600;
+        font-size: clamped(100px, 200px, 480px, 1920px);
         will-change: transform;
+        text-transform: uppercase;
 
         :deep(.outline) {
             color: $primary;
 
             /* Text Shadow Property */
-            text-shadow: -1px -1px 0 $secondary, 1px -1px 0 $secondary, 1px 1px 0 $secondary,
-                1px 1px 0 $secondary;
+            text-shadow: -4px -4px 0 $secondary, 4px -4px 0 $secondary, 4px 4px 0 $secondary,
+                4px 4px 0 $secondary;
         }
     }
 }

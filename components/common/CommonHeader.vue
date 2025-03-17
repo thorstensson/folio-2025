@@ -9,7 +9,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 .a {
   text-decoration: none;
 }
@@ -33,7 +32,7 @@
   &__logo {
     width: 20px;
     height: auto;
-    padding-bottom:6px;
+    padding-bottom: 6px;
 
     @include this-and-above('lg') {
       width: 30px;

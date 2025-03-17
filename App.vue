@@ -4,7 +4,7 @@ const isMounted = ref<boolean>(false);
 
 onMounted(() => {
     isMounted.value = true
-    // Initialize Lenis
+    // Initialize Lenis for smoth scroll
     const lenis = new Lenis({
         autoRaf: true,
     });

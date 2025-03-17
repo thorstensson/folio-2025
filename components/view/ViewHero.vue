@@ -59,12 +59,6 @@ onMounted(async () => {
             start: 'top top', // when the top of the trigger hits the top of the viewport
             end: '+=500', // end after scrolling 500px beyond the start
             scrub: .5, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-            snap: {
-            snapTo: 'labels', // snap to the closest label in the timeline
-            duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-            delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
-            ease: 'power1.inOut' // the ease of the snap animation ("power3" by default)
-        }
         }
     })
 
@@ -115,12 +109,12 @@ onMounted(async () => {
     font-family: $sans-text;
     position: fixed;
     gap: 20px;
-    bottom: 0;
+    bottom: 20px;
     color: $secondary;
 
     &__header {
         font-size: clamped(46px, 130px, 480px, 1920px);
-        font-weight: 700;
+        font-weight: 600;
         line-height: .9;
     }
 
@@ -128,6 +122,7 @@ onMounted(async () => {
         font-size: 18px;
         font-weight: 400;
         max-width: 500px;
+        padding-left:20px;
     }
 }
 </style>

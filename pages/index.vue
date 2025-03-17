@@ -3,6 +3,11 @@ definePageMeta({
     layout: 'default'
 });
 
+const scrollConfig = reactive({
+    text: '                       Swedish frontend developer & photographer. UI/UX / this / *  Based: Barcelona / London ...',
+    speed:"1"
+})
+
 const isNext = ref<boolean>(false)
 
 onMounted(() => {
@@ -16,6 +21,8 @@ onMounted(() => {
     <div class="home-wrapper" :class="{ show: isNext }">
         <ViewHero />
         <ViewSelProjects />
+        <UITextScroller :text="scrollConfig.text" :speed="scrollConfig.speed"/>
+        <ViewContact />
     </div>
 </template>
 
@@ -24,7 +31,7 @@ onMounted(() => {
     height: 100vh;
 }
 
-// might be the gsap but we really need wait for both components to rener on next tick
+// might be the gsap but we really need wait for both components to render on next tick
 .show {
     visibility: visible !important;
 }
