@@ -17,3 +17,8 @@ a, button /* &c... */ {
   all: unset;
   cursor: pointer;
 }
+
+div, section, span{
+  caret-color: transparent; 
+}
+

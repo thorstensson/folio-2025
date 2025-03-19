@@ -1,0 +1,17 @@
+query contact {
+  contact(where: { emailTitle: "Contact" }) {
+    address
+    addressTitle
+    email
+    emailTitle
+  }
+  socials {
+    name
+    socialURL
+    id
+  }
+
+    form(where: {id: "cm8ed03k6glf007mln6mz61au"}) {
+    formIntro
+  }
+}

@@ -22,7 +22,6 @@ onMounted(() => {
         <ViewHero />
         <ViewSelProjects />
         <UITextScroller :text="scrollConfig.text" :speed="scrollConfig.speed"/>
-        <ViewContact />
     </div>
 </template>
 
