@@ -6,7 +6,7 @@
  */
 
 const form = ref({
-    access_key: useRuntimeConfig().public.formApi,
+    access_key: useRuntimeConfig().public.FORM_API,
     subject: "Email from thomasjt.com",
     name: "",
     email: "",
@@ -71,18 +71,20 @@ const submitForm = async () => {
         </label>
         <button type="submit">Send</button>
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+        <h2>{{ message }}</h2>
     </form>
 </template>
 
 <style lang="scss" scoped>
-// Have to get back to portfolio build or I would optimised with functions/mixins more!
-
 ::placeholder {
     font-size: 16px;
 }
 
 form * {
-    font-family: $sans-text;
+    font-family: $sans-ui;
+    color: $accent2;
+    font-weight: 400;
+    caret-color: $accent2;
 }
 
 form {
@@ -90,6 +92,11 @@ form {
     flex-direction: column;
     gap: 10px;
     max-width: 400px;
+
+    h2 {
+        font-size: 20px;
+        color: $accent2;
+    }
 
     label ::placeholder {
         color: $accent1;

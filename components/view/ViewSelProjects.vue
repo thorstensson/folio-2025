@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useHomeStore } from '~/store/useHomeStore'
 
-const { data } = await useAsyncGql({
-    operation: 'projects'
-});
+// PINIA 🍍 
+const store = useHomeStore()
 
 const { $gsap } = useNuxtApp()
 
@@ -23,7 +23,7 @@ onMounted(async () => {
             //markers: { startColor: "black", endColor: "orange", fontSize: "18px", fontWeight: "bold", indent: 20 }
         }
     })
-
+    6
     // Reveal and unreveal text thanks youtube
     let sections = $gsap.utils.toArray('.split');
     sections.forEach((sec: any) => {
@@ -73,7 +73,7 @@ onMounted(async () => {
     </div>
 
     <div class="projects">
-        <div v-for="proj in data.projects" :key="proj.id">
+        <div v-for="proj in store.data?.projects" :key="proj.id">
             <div class="projects__proj">
                 <NuxtImg class="unblur" :src="proj.image[0].handle" provider="hygraph" alt="Project image" format="webp"
                     sizes="sm:100vw md:50vw lg:40svw" densities="x1 x2"></NuxtImg>
@@ -105,7 +105,7 @@ onMounted(async () => {
     color: $secondary;
     background-color: #E7F6F2;
     margin: 0px 0 50px 0;
-    padding-top:20px;
+    padding-top: 20px;
 
     &__header {
         font-size: clamped(46px, 100px, 380px, 1920px);

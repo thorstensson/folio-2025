@@ -2,10 +2,12 @@
 import * as PIXI from 'pixi.js';
 import { Assets, DisplacementFilter } from 'pixi.js'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useHomeStore } from '~/store/useHomeStore'
 
-const { data } = await useAsyncGql({
-    operation: 'author'
-})
+// Granular, believe this is the way of Pinia: separate stores
+const store = useHomeStore()
+// Call once mean it will not call again even if page revisited
+await callOnce('home', () => store.fetchData())
 
 const { $gsap } = useNuxtApp()
 
@@ -78,8 +80,8 @@ onMounted(async () => {
         </section>
     </div>
     <section class="auth-intro" aria-label="Quick summary" ref="title">
-        <div class="auth-intro__header">{{ data.author?.name }}.</div>
-        <div class="auth-intro__text">{{ data.author?.intro }}</div>
+        <div class="auth-intro__header">{{ store.data.author?.name }}.</div>
+        <div class="auth-intro__text">{{ store.data.author?.intro }}</div>
     </section>
 </template>
 

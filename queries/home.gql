@@ -1,0 +1,43 @@
+query home {
+  author(where: { slug: "thomas-thorstensson" }) {
+    name
+    bio
+    intro
+  }
+
+  projects(first: 6, orderBy: date_DESC) {
+    id
+    name
+    description
+    slug
+    tags
+    sourceCode
+    image {
+      id
+      handle
+    }
+  }
+
+  projectsIntro(where: { slug: "selected-projects" }) {
+    title
+    intro
+  }
+
+  contact(where: { emailTitle: "Contact" }) {
+    address
+    addressTitle
+    email
+    emailTitle
+  }
+
+  socials {
+    name
+    socialURL
+    id
+  }
+
+  form(where: { id: "cm8ed03k6glf007mln6mz61au" }) {
+    formIntro
+  }
+
+}

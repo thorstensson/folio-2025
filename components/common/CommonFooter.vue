@@ -1,55 +1,59 @@
 <script setup lang="ts">
+import SplitType from "split-type"
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import SplitType from 'split-type';
+import { useHomeStore } from "~/store/useHomeStore"
 
-const { data } = await useAsyncGql({
-  operation: 'contact'
-})
+// PINIA 🍍
+const store = useHomeStore()
 
 const { $gsap } = useNuxtApp()
 
-onMounted (() => {
-  let sections = $gsap.utils.toArray('.split');
-    sections.forEach((sec: any) => {
-        const splitTxt = new SplitType(sec, { types: 'words' })
-        $gsap.from(splitTxt.words, {
-            autoAlpha: 0,
-            y: +20,
-            scrollTrigger: {
-                trigger: sec,
-                start: 'top 80%',
-                scrub: false,
-                end: 'top 20%',
-                toggleActions: "play none none reverse",
-            },
-            transformOrigin: 'top',
-            stagger: .1,
-            duration: .2
-        })
+onMounted(() => {
+  $gsap.registerPlugin(ScrollTrigger)
+  
+  let sections = $gsap.utils.toArray(".split")
+  sections.forEach((sec: any) => {
+    const splitTxt = new SplitType(sec, { types: "words" })
+    $gsap.from(splitTxt.words, {
+      autoAlpha: 0,
+      y: +20,
+      scrollTrigger: {
+        trigger: sec,
+        start: "top 40%",
+        scrub: false,
+        end: "top 90%",
+        toggleActions: "play none none reverse",
+      },
+      transformOrigin: "top",
+      stagger: 0.1,
+      duration: 0.2,
     })
+  })
 })
-
 </script>
 
 <template>
   <footer class="footer">
-
     <div class="footer__col1">
       <section class="footer__contact">
-        <div class="footer__contact__title split">{{ data.contact?.emailTitle }}</div>
-        <div class="split">{{ data.contact?.email }}</div>
+        <div class="footer__contact__title split">
+          {{ store.data.contact?.emailTitle }}
+        </div>
+        <div class="split">{{ store.data.contact?.email }}</div>
       </section>
 
       <section class="footer__address">
-        <div class="footer__address__title split">{{ data.contact?.addressTitle }}</div>
-        <div class="split">{{ data.contact?.address }}</div>
+        <div class="footer__address__title split">
+          {{ store.data.contact?.addressTitle }}
+        </div>
+        <div class="split">{{ store.data.contact?.address }}</div>
       </section>
     </div>
 
     <div class="footer__col2">
       <section class="footer__social">
         <div class="footer__social__title split">Social</div>
-        <div v-for="social in data.socials" :key="social.id">
+        <div v-for="social in store.data.socials" :key="social.id">
           <NuxtLink :to="social.socialURL as string" rel="noopener" target="_blank">
             <div class="split">{{ social.name }}</div>
           </NuxtLink>
@@ -58,7 +62,7 @@ onMounted (() => {
     </div>
 
     <div class="footer__col3">
-      <div class="intro split">{{ data.form?.formIntro }}</div>
+      <div class="intro split">{{ store.data.form?.formIntro }}</div>
       <MailFormW3 />
     </div>
 
@@ -67,10 +71,9 @@ onMounted (() => {
 </template>
 
 <style lang="scss" scoped>
-
 .split {
-    -webkit-font-kerning: none;
-    font-kerning: none;
+  -webkit-font-kerning: none;
+  font-kerning: none;
 }
 
 section {
@@ -93,14 +96,14 @@ section {
 
 .footer {
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   gap: 50px;
   padding-top: 100px;
   font-family: "Lexend", "Lexend Fallback: Arial", sans-serif;
-  color: #1E201E;
+  color: #1e201e;
   font-size: 15px;
-  color: #E7F6F2;
-  background-color: #1E201E;
+  color: #e7f6f2;
+  background-color: #1e201e;
   padding: 100px 20px 0 20px;
   min-height: 600px;
 
@@ -129,15 +132,15 @@ section {
   &__col2 {
     margin-right: 0%;
 
-    @include this-and-above('md') {
-      flex-wrap:nowrap;
+    @include this-and-above("md") {
+      flex-wrap: nowrap;
     }
 
-    @include this-and-above('lg') {
+    @include this-and-above("lg") {
       margin-right: 20%;
     }
 
-    @include this-and-above('xl') {
+    @include this-and-above("xl") {
       margin-right: 33%;
     }
   }
