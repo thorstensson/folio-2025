@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { useMousePos } from '~/composable/useMousePos';
+import { useMousePos } from '~/composable/useMousePos'
 
 const { xpos, ypos } = useMousePos()
 const { $gsap } = useNuxtApp()
 
 const text = useTemplateRef<HTMLHtmlElement>('text')
-const cursor = useTemplateRef<HTMLHtmlElement>('cursor')
 const shape = useTemplateRef<HTMLHtmlElement>('shape')
 const dataName = ref<string>("")
 const isOver = ref<boolean>(false)
@@ -16,14 +15,8 @@ const loopStarted = ref<boolean>(false)
 const pos = { x: 0, y: 0 }
 const vel = { x: 0, y: 0 }
 
-const hDir = ref<string>('')
-
-const bgColorObject = computed(() => {
-    return bgColor.value
-})
-
 onMounted(() => {
-    let sections = $gsap.utils.toArray('.action');
+    let sections = $gsap.utils.toArray('.action')
 
     sections.forEach((sec: any) => {
         sec.addEventListener('mouseover', () => {
@@ -50,10 +43,10 @@ onMounted(() => {
             ease: "power4.out",
             duration: 0.2,
             onUpdate: () => {
-                vel.x = x! - pos.x;
-                vel.y = y! - pos.y;
+                vel.x = x! - pos.x
+                vel.y = y! - pos.y
             },
-        });
+        })
 
         if (!loopStarted.value) {
             $gsap.ticker.add(loop)
@@ -73,17 +66,17 @@ onMounted(() => {
             scaleX: 1 + scale,
             scaleY: 1 - scale,
             duration: .0
-        });
+        })
     }
 
     //The Blob! Thanks to https://codepen.io/GreenSock/pen/YzQabVQ
     const getScale = (diffX: number, diffY: number) => {
-        const distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
-        return Math.min(distance / 100, .2);
+        const distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2))
+        return Math.min(distance / 100, .2)
     }
 
     const getAngle = (diffX: number, diffY: number) => {
-        return (Math.atan2(diffY, diffX) * 180) / Math.PI;
+        return (Math.atan2(diffY, diffX) * 180) / Math.PI
     }
 
     watch(() => [xpos.value, ypos.value], ([newXpos, newYpos], [prevXpos, prevYpos]) => {

@@ -94,9 +94,9 @@ onMounted(async () => {
 .pin-intro {
     //background-color: $primary;
     z-index: 100;
-    backdrop-filter: blur(100px);
-    -webkit-mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, black 20%, black 100%);
-    mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, black 20%, black 100%);
+    backdrop-filter: blur(20px);
+    -webkit-mask-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, $primary 20%, $primary 100%);
+    mask-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, $primary 20%, $primary 100%);
 }
 
 .prj-intro {

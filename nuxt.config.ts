@@ -39,15 +39,15 @@ export default defineNuxtConfig({
     // Hygraph base URL for assets
     image: {
       hygraph: {
-        baseURL: '',
+        baseURL: 'https://eu-west-2.graphassets.com/cm4tev3k1008n01uo6egngvzu',
         format: ['webp']
     }
   },
   
   runtimeConfig: {
     public: {
-      FORM_API:'',
-      GQL_HOST: ''
+      FORM_API:'4fd08721-1c97-4a42-abbc-369421143454',
+      GQL_HOST: 'https://eu-west-2.cdn.hygraph.com/content/cm4tetqve01n107umfec1iqbg/master'
     }
   },
 
