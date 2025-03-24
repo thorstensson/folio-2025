@@ -108,7 +108,6 @@ onMounted(async () => {
 .auth-intro {
     display: flex;
     flex-flow: column;
-    font-family: $sans-text;
     position: fixed;
     gap: 20px;
     bottom: 20px;

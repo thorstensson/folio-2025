@@ -139,21 +139,12 @@ onNuxtReady(() => {
         white-space: pre;
         line-height: 1em;
         margin: 0 2rem 0 0;
-        font-family: $sans-text;
+        font-family: $sans-ui;
         color: $secondary;
-        font-family: $sans-text;
-        font-weight: 600;
+        font-weight: 500;
         font-size: clamped(100px, 200px, 480px, 1920px);
         will-change: transform;
         text-transform: uppercase;
-
-        :deep(.outline) {
-            color: $primary;
-
-            /* Text Shadow Property */
-            text-shadow: -4px -4px 0 $secondary, 4px -4px 0 $secondary, 4px 4px 0 $secondary,
-                4px 4px 0 $secondary;
-        }
     }
 }
 </style>

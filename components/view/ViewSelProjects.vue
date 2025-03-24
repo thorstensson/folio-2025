@@ -74,7 +74,7 @@ onMounted(async () => {
 
     <div class="projects">
         <div v-for="proj in store.data?.projects" :key="proj.id">
-            <div class="projects__proj">
+            <div class="projects__proj action" data-name="View Project" data-color="#FFF">
                 <NuxtImg class="unblur" :src="proj.image[0].handle" provider="hygraph" alt="Project image" format="webp"
                     sizes="sm:100vw md:50vw lg:40svw" densities="x1 x2"></NuxtImg>
             </div>
@@ -92,8 +92,11 @@ onMounted(async () => {
 }
 
 .pin-intro {
-    background-color: $primary;
-    z-index: 100
+    //background-color: $primary;
+    z-index: 100;
+    backdrop-filter: blur(100px);
+    -webkit-mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, black 20%, black 100%);
+    mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, black 20%, black 100%);
 }
 
 .prj-intro {
@@ -101,9 +104,8 @@ onMounted(async () => {
     flex-flow: column;
     gap: 20px;
     bottom: 20px;
-    font-family: $sans-text;
     color: $secondary;
-    background-color: #E7F6F2;
+    //background-color: #E7F6F2;
     margin: 0px 0 50px 0;
     padding-top: 20px;
 
@@ -124,14 +126,12 @@ onMounted(async () => {
     overflow: hidden;
 
     &__name {
-        font-family: $sans-text;
         color: $secondary;
         font-weight: 600;
         font-size: clamped(15px, 30px, 380px, 1920px);
     }
 
     &__tags {
-        font-family: $sans-text;
         color: $secondary;
     }
 

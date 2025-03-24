@@ -4,6 +4,7 @@
 
 <template>
   <div>
+    <UIMouseCursor />
     <CommonHeader />
     <div class="folio-wrapper">
       <slot />

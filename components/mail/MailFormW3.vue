@@ -58,21 +58,23 @@ const submitForm = async () => {
 </script>
 
 <template>
-    <form @submit.prevent="submitForm">
-        <label for="name">
-            <input type="text" name="name" id="name" v-model="form.name" placeholder="Name" required />
-        </label>
-        <label for="email">
-            <input type="email" name="email" id="email" v-model="form.email" placeholder="Email" required />
-        </label>
-        <label for="message">
-            <textarea name="message" id="message" v-model="form.message" rows="6" placeholder="My message is about.."
-                required></textarea>
-        </label>
-        <button type="submit">Send</button>
-        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-        <h2>{{ message }}</h2>
-    </form>
+    <div class="action" data-vis="none">
+        <form @submit.prevent="submitForm">
+            <label for="name">
+                <input type="text" name="name" id="name" v-model="form.name" placeholder="Name" required />
+            </label>
+            <label for="email">
+                <input type="email" name="email" id="email" v-model="form.email" placeholder="Email" required />
+            </label>
+            <label for="message">
+                <textarea name="message" id="message" v-model="form.message" rows="6"
+                    placeholder="My message is about.." required></textarea>
+            </label>
+            <button type="submit">Send</button>
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            <h2>{{ message }}</h2>
+        </form>
+    </div>
 </template>
 
 <style lang="scss" scoped>

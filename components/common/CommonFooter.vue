@@ -10,7 +10,7 @@ const { $gsap } = useNuxtApp()
 
 onMounted(() => {
   $gsap.registerPlugin(ScrollTrigger)
-  
+
   let sections = $gsap.utils.toArray(".split")
   sections.forEach((sec: any) => {
     const splitTxt = new SplitType(sec, { types: "words" })
@@ -99,13 +99,13 @@ section {
   flex-wrap: wrap;
   gap: 50px;
   padding-top: 100px;
-  font-family: "Lexend", "Lexend Fallback: Arial", sans-serif;
+  padding: 100px 20px 0 20px;
+  min-height: 600px;
+  font-family: $sans-ui;
   color: #1e201e;
   font-size: 15px;
   color: #e7f6f2;
-  background-color: #1e201e;
-  padding: 100px 20px 0 20px;
-  min-height: 600px;
+  background-color: $secondary;
 
   &__contact {
     &__title {
