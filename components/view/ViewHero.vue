@@ -80,7 +80,7 @@ onMounted(async () => {
         </section>
     </div>
     <section class="auth-intro" aria-label="Quick summary" ref="title">
-        <div class="auth-intro__header">{{ store.data.author?.name }}.</div>
+        <div class="auth-intro__header">{{ store.data.author?.name }}</div>
         <div class="auth-intro__text">{{ store.data.author?.intro }}</div>
     </section>
 </template>
@@ -117,6 +117,7 @@ onMounted(async () => {
         font-size: clamped(46px, 130px, 480px, 1920px);
         font-weight: 600;
         line-height: .9;
+        font-family: $sans-text;
     }
 
     &__text {

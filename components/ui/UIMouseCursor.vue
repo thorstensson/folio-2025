@@ -22,7 +22,7 @@ onMounted(() => {
         sec.addEventListener('mouseover', () => {
             isOver.value = true
             dataName.value = sec.dataset.name
-            bgColor.value = sec.dataset.color
+            bgColor.value = '#f4f3ee'
             dispStr.value = sec.dataset.vis
         })
 
@@ -60,8 +60,8 @@ onMounted(() => {
 
         // Set transform data to Jelly Blob
         $gsap.to(shape.value, {
-            x: pos.x - (shape.value!.getBoundingClientRect().width / 2),
-            y: pos.y - (shape.value!.getBoundingClientRect().height / 2),
+            x: Math.round(pos.x - (shape.value!.getBoundingClientRect().width / 2)),
+            y: Math.round(pos.y - (shape.value!.getBoundingClientRect().height / 2)),
             //rotation: rotation + "_short",
             scaleX: 1 + scale,
             scaleY: 1 - scale,
@@ -88,8 +88,8 @@ onMounted(() => {
 
 <template>
     <div class="cursor" :style="{ display: dispStr }">
-        <div class="cursor__shape" :style="{ backgroundColor: bgColor}"
-            :class="{ 'cursor__shape--over': isOver }" ref="shape">
+        <div class="cursor__shape" :style="{ backgroundColor: bgColor }" :class="{ 'cursor__shape--over': isOver }"
+            ref="shape">
             <div class="cursor__shape__text" :class="{ 'cursor__shape__text--on': isOver }" ref="text">
                 {{ dataName }} <i />
             </div>
@@ -118,7 +118,7 @@ onMounted(() => {
         border: 1px solid #ccc;
         border-radius: 50%;
         pointer-events: none;
-        background-color: $secondary;
+        background-color: $primary;
         transform-origin: center center;
         will-change: width, height, transform, border;
         transition: all .4s cubic-bezier(.075, .82, .165, 1);
@@ -138,6 +138,9 @@ onMounted(() => {
             vertical-align: middle;
             backface-visibility: hidden;
             transform: translateZ(0);
+            -webkit-text-size-adjust: 100%;
+
+            text-rendering: optimizeLegibility;
 
             &--on i::after {
                 color: black;

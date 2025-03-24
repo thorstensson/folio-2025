@@ -139,7 +139,7 @@ onNuxtReady(() => {
         white-space: pre;
         line-height: 1em;
         margin: 0 2rem 0 0;
-        font-family: $sans-ui;
+        font-family: $sans-text;
         color: $secondary;
         font-weight: 500;
         font-size: clamped(100px, 200px, 480px, 1920px);

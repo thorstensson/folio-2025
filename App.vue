@@ -32,10 +32,21 @@ body {
     font-family: $sans-text;
 }
 
+.html{
+      /* Adjust font size */
+  -webkit-text-size-adjust: 100%;
+  /* Font varient */
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  /* Smoothing */
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
     display: flex;
     flex-direction: column;
-
     margin: 0;
     padding: 0;
 }

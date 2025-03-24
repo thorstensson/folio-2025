@@ -102,9 +102,9 @@ section {
   padding: 100px 20px 0 20px;
   min-height: 600px;
   font-family: $sans-ui;
-  color: #1e201e;
+  color: $accent1;
   font-size: 15px;
-  color: #e7f6f2;
+  color: primary;
   background-color: $secondary;
 
   &__contact {

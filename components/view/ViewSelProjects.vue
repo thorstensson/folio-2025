@@ -23,7 +23,28 @@ onMounted(async () => {
             //markers: { startColor: "black", endColor: "orange", fontSize: "18px", fontWeight: "bold", indent: 20 }
         }
     })
-    6
+    
+  // Reveal and unreveal text thanks youtube
+  let sectionsChar = $gsap.utils.toArray('.split-char');
+    sectionsChar.forEach((sec: any) => {
+        const splitTxt = new SplitType(sec, { types: 'chars' })
+        $gsap.from(splitTxt.chars, {
+            autoAlpha: 0,
+            y: +20,
+            scrollTrigger: {
+                trigger: sec,
+                start: 'top 80%',
+                scrub: false,
+                end: 'top 20%',
+                toggleActions: "play none none reverse",
+            },
+            transformOrigin: 'top',
+            stagger: .1,
+            duration: .2
+        })
+    })
+
+
     // Reveal and unreveal text thanks youtube
     let sections = $gsap.utils.toArray('.split');
     sections.forEach((sec: any) => {
@@ -68,7 +89,7 @@ onMounted(async () => {
 <template>
     <div class="pin-intro">
         <section class="prj-intro">
-            <div class="prj-intro__header split">Selected Projects.</div>
+            <div class="prj-intro__header split-char">Selected Projects.</div>
         </section>
     </div>
 
@@ -92,7 +113,6 @@ onMounted(async () => {
 }
 
 .pin-intro {
-    //background-color: $primary;
     z-index: 100;
     backdrop-filter: blur(20px);
     -webkit-mask-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, $primary 20%, $primary 100%);
@@ -105,7 +125,6 @@ onMounted(async () => {
     gap: 20px;
     bottom: 20px;
     color: $secondary;
-    //background-color: #E7F6F2;
     margin: 0px 0 50px 0;
     padding-top: 20px;
 
@@ -113,6 +132,7 @@ onMounted(async () => {
         font-size: clamped(46px, 100px, 380px, 1920px);
         font-weight: 600;
         line-height: .9;
+        font-family: $sans-text;
     }
 }
 
@@ -121,9 +141,15 @@ onMounted(async () => {
     flex-direction: column;
     gap: 100px;
     width: 100%;
-    background-color: #E7F6F2;
+    background-color: $primary;
     align-self: flex-start;
     overflow: hidden;
+
+    &__proj {
+        filter: grayscale(50%) sepia(10%) saturate(76%);
+        -webkit-filter: grayscale(50%) sepia(10%) saturate(76%);
+        -moz-filter: grayscale(50%) sepia(10%) saturate(76%);
+    }
 
     &__name {
         color: $secondary;
