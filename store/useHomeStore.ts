@@ -1,18 +1,30 @@
 import { defineStore } from 'pinia';
 import { useNuxtApp } from '#imports';
+import type { GqlError } from 'nuxt-graphql-client'
 
-const ql = ref<any | unknown | {}>()
+const _data = ref()
+const _error = ref()
 
 export const useHomeStore = defineStore('data', {
     state: () => ({
-        data: ql
+        data: _data,
+        error: _error
     }),
+
     actions: {
         async fetchData() {
-            const { data } = await useAsyncGql({
+            const { data, error, } = await useAsyncGql({
                 operation: 'home',
-              })
-            ql.value = data
+            })
+            _data.value = data
+            _error.value = error
+
+            if (error.value) {
+                console.log("store error:", error.value)
+            }
         },
     },
+
+    persist:true
+
 });

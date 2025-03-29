@@ -33,27 +33,28 @@ onMounted(() => {
 </script>
 
 <template>
-  <footer class="footer">
+
+  <div class="footer">
     <div class="footer__col1">
       <section class="footer__contact">
         <div class="footer__contact__title split">
-          {{ store.data.contact?.emailTitle }}
+          {{ store.data?.contact?.emailTitle }}
         </div>
-        <div class="split">{{ store.data.contact?.email }}</div>
+        <div class="split">{{ store.data?.contact?.email }}</div>
       </section>
 
       <section class="footer__address">
         <div class="footer__address__title split">
-          {{ store.data.contact?.addressTitle }}
+          {{ store.data?.contact?.addressTitle }}
         </div>
-        <div class="split">{{ store.data.contact?.address }}</div>
+        <div class="split">{{ store.data?.contact?.address }}</div>
       </section>
     </div>
 
     <div class="footer__col2">
       <section class="footer__social">
         <div class="footer__social__title split">Social</div>
-        <div v-for="social in store.data.socials" :key="social.id">
+        <div v-for="social in store.data?.socials" :key="social.id">
           <NuxtLink :to="social.socialURL as string" rel="noopener" target="_blank">
             <div class="split">{{ social.name }}</div>
           </NuxtLink>
@@ -62,12 +63,13 @@ onMounted(() => {
     </div>
 
     <div class="footer__col3">
-      <div class="intro split">{{ store.data.form?.formIntro }}</div>
+      <div class="intro split">{{ store.data?.form?.formIntro }}</div>
       <MailFormW3 />
     </div>
 
-    <div class="made">Created by Thomas</div>
-  </footer>
+    <div class="made">Made by Thomas</div>
+
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -109,18 +111,24 @@ section {
 
   &__contact {
     &__title {
+      font-family: $serif-head;
+      font-size: 18px;
       color: $accent2;
     }
   }
 
   &__address {
     &__title {
+      font-family: $serif-head;
+      font-size: 18px;
       color: $accent2;
     }
   }
 
   &__social {
     &__title {
+      font-family: $serif-head;
+      font-size: 18px;
       color: $accent2;
     }
   }

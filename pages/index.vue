@@ -1,16 +1,23 @@
 <script setup lang="ts">
+import { useHomeStore } from '~/store/useHomeStore'
+
+// PINIA 🍍 
+const store = useHomeStore()
+// Fetch data so child components can access
+await callOnce('home', () => store.fetchData())
+
 definePageMeta({
     layout: 'default'
 });
 
 const scrollConfig = reactive({
     text: '                       Swedish frontend developer & photographer. UI/UX / this / *  Based: Barcelona / London ...',
-    speed:"1"
+    speed: "1"
 })
 
 const isNext = ref<boolean>(false)
 
-onMounted(() => {
+onMounted(async () => {
     nextTick(() => {
         isNext.value = true;
     })
@@ -21,7 +28,7 @@ onMounted(() => {
     <div class="home-wrapper" :class="{ show: isNext }">
         <ViewHero />
         <ViewSelProjects />
-        <UITextScroller :text="scrollConfig.text" :speed="scrollConfig.speed"/>
+        <UITextScroller :text="scrollConfig.text" :speed="scrollConfig.speed" />
     </div>
 </template>
 

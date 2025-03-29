@@ -148,8 +148,7 @@ onMounted(() => {
 <template>
     <div class="player-wrapper">
         <audio type="audio/mp3" :src="`${PATH}/${currentTrack}`" preload="auto" v-on:timeupdate="timeUpdate"
-            v-on:durationchange="durationUpdate" v-on:ended="onTrackEnded" ref="audio-element"
-            crossorigin="anonymous"></audio>
+            v-on:durationchange="durationUpdate" v-on:ended="onTrackEnded" ref="audio-element"></audio>
         <div class="controls">
             <UIAudioToggle v-model="doPlay" :title />
         </div>

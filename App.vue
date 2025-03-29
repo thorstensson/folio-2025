@@ -32,6 +32,9 @@ body {
     font-family: $sans-text;
 }
 
+html {
+      scroll-snap-type: y proximity;
+    }
 .html{
       /* Adjust font size */
   -webkit-text-size-adjust: 100%;

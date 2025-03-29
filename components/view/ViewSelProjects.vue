@@ -8,7 +8,7 @@ const store = useHomeStore()
 
 const { $gsap } = useNuxtApp()
 
-onMounted(async () => {
+onMounted(async() => {
     $gsap.registerPlugin(ScrollTrigger)
 
     let pt = $gsap.timeline({
@@ -19,13 +19,12 @@ onMounted(async () => {
             start: 'top top', // when the top of the trigger hits the top of the viewport
             endTrigger: ".projects",
             end: 'bottom bottom',
-            scrub: 1,
+            scrub: 1
             //markers: { startColor: "black", endColor: "orange", fontSize: "18px", fontWeight: "bold", indent: 20 }
         }
     })
-    
-  // Reveal and unreveal text thanks youtube
-  let sectionsChar = $gsap.utils.toArray('.split-char');
+    // Reveal and unreveal text thanks youtube
+    let sectionsChar = $gsap.utils.toArray('.split-char');
     sectionsChar.forEach((sec: any) => {
         const splitTxt = new SplitType(sec, { types: 'chars' })
         $gsap.from(splitTxt.chars, {
@@ -69,7 +68,7 @@ onMounted(async () => {
     images.forEach((img: any) => {
         $gsap.from(img, {
             opacity: 0,
-            filter: 'blur(50px)',
+            filter: 'blur(20px)',
             scrollTrigger: {
                 trigger: img,
                 start: 'top 80%',
@@ -94,16 +93,17 @@ onMounted(async () => {
     </div>
 
     <div class="projects">
-        <div v-for="proj in store.data?.projects" :key="proj.id">
-            <div class="projects__proj action" data-name="View Project" data-color="#FFF">
-                <NuxtImg class="unblur" :src="proj.image[0].handle" provider="hygraph" alt="Project image" format="webp"
-                    sizes="sm:100vw md:50vw lg:40svw" densities="x1 x2"></NuxtImg>
+        <div v-for="proj in store.data?.projects" :key="proj.slug">
+            <div class="projects__proj action" data-name="View me" data-color="#FFF">
+                <NuxtLink :to="`/projects/${proj.slug}`">
+                    <NuxtImg class="unblur" :src="proj.image[0].handle" provider="hygraph" alt="Project image"
+                        format="webp" sizes="sm:100vw md:50vw lg:40svw" densities="x1 x2"></NuxtImg>
+                </NuxtLink>
             </div>
             <div class="projects__name split">{{ proj.name }}</div>
             <div class="projects__tags split">{{ proj.tags }}</div>
         </div>
     </div>
-
 </template>
 
 <style lang="scss" scoped>
@@ -113,6 +113,8 @@ onMounted(async () => {
 }
 
 .pin-intro {
+    transform: initial;
+    scroll-snap-align: start;
     z-index: 100;
     backdrop-filter: blur(20px);
     -webkit-mask-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, $primary 20%, $primary 100%);
@@ -120,19 +122,21 @@ onMounted(async () => {
 }
 
 .prj-intro {
+    scroll-snap-align: start;
+    transform: initial;
     display: flex;
     flex-flow: column;
     gap: 20px;
     bottom: 20px;
     color: $secondary;
-    margin: 0px 0 50px 0;
+    margin: 0px 0 30px 0;
     padding-top: 20px;
+    font-family: $serif-head;
 
     &__header {
         font-size: clamped(46px, 100px, 380px, 1920px);
         font-weight: 600;
         line-height: .9;
-        font-family: $sans-text;
     }
 }
 
@@ -155,6 +159,7 @@ onMounted(async () => {
         color: $secondary;
         font-weight: 600;
         font-size: clamped(15px, 30px, 380px, 1920px);
+        font-family: $serif-head;
     }
 
     &__tags {
