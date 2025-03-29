@@ -2,7 +2,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-
+// HMM
   app: {
     baseURL: '/'
   },
@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt', 
     '@nuxt/fonts',
     'pinia-plugin-persistedstate/nuxt',
+
   ],
 
   fonts: {
@@ -54,15 +55,15 @@ export default defineNuxtConfig({
   // Hygraph base URL for assets
   image: {
     hygraph: {
-      baseURL: 'https://eu-west-2.graphassets.com/cm4tev3k1008n01uo6egngvzu',
+      baseURL: '',
       format: ['webp']
     }
   },
 
   runtimeConfig: {
     public: {
-      FORM_API: '4fd08721-1c97-4a42-abbc-369421143454',
-      GQL_HOST: 'https://eu-west-2.cdn.hygraph.com/content/cm4tetqve01n107umfec1iqbg/master'
+      FORM_API: '',
+      GQL_HOST: ''
     }
   },
 
